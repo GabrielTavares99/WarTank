@@ -1,11 +1,14 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.color.CMMException;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -28,6 +31,8 @@ public class TelaInicial extends JFrame implements MouseListener{
 	
 	ControladorJogo cj;
 	
+	Boolean rep = true;
+	
 	public TelaInicial() {
 			
 		setSize(800, 600);
@@ -35,6 +40,9 @@ public class TelaInicial extends JFrame implements MouseListener{
 		setLayout(null);
 		setLocationRelativeTo(null);
 		
+		URL url = this.getClass().getResource("images/tankAmigo.png");
+		Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+		this.setIconImage(imagemTitulo);
 		
 		tela = this;
 		
@@ -69,8 +77,8 @@ public class TelaInicial extends JFrame implements MouseListener{
 				
 		cj = ControladorJogo.getInstance();
 
-		cj.cm.tiroTanque();	
-		
+		cj.cm.tiroTanque();
+				
 		pnPapelParede.setComponentZOrder(lblFundo, 1);
 		pnPapelParede.setComponentZOrder(lblIniciar, 0);
 		
@@ -84,8 +92,9 @@ public class TelaInicial extends JFrame implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 
 //		cj.pararMusica();
-		cj.pararMusica();
-		cj.cm.trilhaSonora();
+		;
+		cj.cm.parar();;
+//		cj.cm.trilhaSonora();
 		cj.iniciarJogo();
 		this.dispose();
 		

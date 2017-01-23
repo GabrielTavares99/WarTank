@@ -10,13 +10,14 @@ public class GerarInimigos implements Runnable{
 	Carro car;
 	Vida life;
 	
-	
+	ThreadGroup tg;
 	Thread t;
 	Pontuacao pontuacao;
 	static GerarInimigos gerarInimigos;
 	
 	public GerarInimigos(Cenario c,Carro carro, Vida vida){
 		tela = c;
+
 		car = carro;
 		life = vida;
 		pontuacao = new Pontuacao(tela);
@@ -30,6 +31,7 @@ public class GerarInimigos implements Runnable{
 	
 	@Override
 	public void run() {
+		
 		while (true) {
 			try {
 				Thread.sleep(2500);

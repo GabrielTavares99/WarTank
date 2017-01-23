@@ -6,7 +6,7 @@ public class Principal {
 		
 		ControladorJogo cj = ControladorJogo.getInstance();	
 		
-		cj.cm.telaInicial();
+//		cj.cm.telaInicial();
 		cj.telaInicial();
 				
 	}

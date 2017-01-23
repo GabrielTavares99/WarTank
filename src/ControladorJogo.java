@@ -15,14 +15,14 @@ public class ControladorJogo {
 	}
 	
 	public void telaInicial(){
-//		cm.telaInicial();
+		cm.telaInicial();
 		TelaInicial tl = new TelaInicial();
 	}
 	
 	public void iniciarJogo(){
-//		cm.trilhaSonora();
-		cm.parar();
-		
+		cm.parar();	
+		cm.trilhaSonora();
+			
 //		cm.trilhaSonora();
 		Cenario c = new Cenario();		
 	}

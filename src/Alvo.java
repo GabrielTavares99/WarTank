@@ -21,7 +21,7 @@ public class Alvo extends JLabel implements Runnable{
 	
 	GerarTiros g;
 	GerarInimigos tb;
-	ControladorJogo controladorJogo ;
+	ControladorJogo cj ;
 	Pontuacao pontuacao;
 	
 	public Alvo(Cenario c,Carro carro,Vida vida, GerarInimigos ggg,Pontuacao p){
@@ -117,25 +117,24 @@ public class Alvo extends JLabel implements Runnable{
 				pontuacao.perder(this.pontuacao);
 				tela.panoDeFundo.remove(this);
 				
-				
 				if (life.getWidth() <= 0) {		
 					JOptionPane.showMessageDialog(null, "Game Over");
 					
-					ControladorJogo cj = ControladorJogo.getInstance();
-					cj.cm.t.stop();
-					cj.cm.telaInicial();
-					cj.telaInicial();
-					this.tela.dispose();			
-//					cj.cm.telaInicial();
-					
-					
 					g4.t.stop();
+					
+					cj = ControladorJogo.getInstance();
+					cj.cm.musica.stop();
+					cj.cm.t.stop();
+
+					TelaInicial telaInicial = new TelaInicial();
+					tela.dispose();
+					
 					this.t.stop();
 					this.tela.dispose();
 					break;
 				}
 				t.stop();
-				this.g.parar();
+				this.g.t.stop();
 				this.t.stop();
 				
 			}	
@@ -182,9 +181,6 @@ public class Alvo extends JLabel implements Runnable{
 		alvo.g.t.stop();
 		alvo.t.stop();
 		tela.panoDeFundo.remove(alvo);
-//		ControladorMusica  cm = ControladorMusica.getInstance();
-//		TelaMudada tela = TelaMudada.getInstance();
-//		cm.parar();
 	}
 	
 }	

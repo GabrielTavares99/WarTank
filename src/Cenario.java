@@ -1,6 +1,8 @@
 import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
@@ -33,9 +35,11 @@ public class Cenario extends JFrame {
 	ImageIcon img;	
 	
 	static Cenario cenario;
-
+	
+	int i= 0;
 	
 	public Cenario(){
+		
 		tela = this;
 		setTitle("Tela Jogo");
 		setSize(800, 600);
@@ -44,13 +48,16 @@ public class Cenario extends JFrame {
 		setLocationRelativeTo(null);
 //		setResizable(false);
 		
+		URL url = this.getClass().getResource("images/tankAmigo.png");
+		Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+		this.setIconImage(imagemTitulo);
+		
 		panoDeFundo = new JPanel();
 		
 		tela = this;
 		
 		panoDeFundo.setLayout(null);		
 		panoDeFundo.setBounds(0,0,tela.getWidth(),tela.getHeight());
-		
 
 		img = new ImageIcon(getClass().getResource("images/batllefiled1.jpg"));
 		img.setImage(img.getImage().getScaledInstance(this.getWidth(), this.getHeight(), 100));
@@ -66,7 +73,16 @@ public class Cenario extends JFrame {
 		Vida vida = new Vida(this);
 		Carro carro = new Carro(this,pontuacao,vida);
 		
-		GerarInimigos gr = GerarInimigos.getInstance(tela, carro, vida);
+//		if (i == 0) {
+//			GerarInimigos gr = GerarInimigos.getInstance(tela, carro, vida);
+//		}else {
+			GerarInimigos gr = new GerarInimigos(tela, carro, vida);;
+//		}
+
+		
+		i++;
+		
+		
 		
 		panoDeFundo.setComponentZOrder(in, 3);
 

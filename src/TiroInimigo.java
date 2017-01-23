@@ -70,28 +70,35 @@ public class TiroInimigo extends JLabel implements Runnable{
 
 			Rectangle r1 = new Rectangle(c[i].getX(), c[i].getY(), c[i].getWidth(), c[i].getHeight());
 
-			if (vida.getWidth()<=0) {
-				
-				tela.panoDeFundo.remove(this);
-				this.t.stop();
-				break;
-			}else if ((c[i] instanceof Carro) && (r1.intersects(r2))) {
+			 if ((c[i] instanceof Carro) && (r1.intersects(r2))) {
 				tela.panoDeFundo.remove(this);
 				Carro  carro = (Carro) c[i];
 				carro.dano(vida);
-//				this.alvo.t.stop();
+
 				
-				this.t.stop();
+				
 				GerarInimigos g4 = GerarInimigos.getInstance(tela, carro, vida);
-				g4.t.stop();
+
 				
 				if (vida.getWidth() <= 0) {
-//					ControladorJogo cj = new ControladorJogo();
-//					cj.Perder(tela);
-//					JOptionPane.showConfirmDialog(null, "Perdeu");
+					JOptionPane.showMessageDialog(null, "Game Over 2");
+					
+					g4.t.stop();
+					
+					cj = ControladorJogo.getInstance();
+					cj.cm.musica.stop();
+					cj.cm.t.stop();
+
+					TelaInicial telaInicial = new TelaInicial();
+					this.tela.dispose();
+					tela.dispose();
+					
+					this.t.stop();
+					
 					return true;
+					
 				}
-				this.t.stop();		
+	
 				
 			}
 			
